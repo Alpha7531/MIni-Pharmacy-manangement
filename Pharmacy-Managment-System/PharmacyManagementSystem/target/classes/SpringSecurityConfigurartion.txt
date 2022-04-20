@@ -1,0 +1,29 @@
+
+
+-------------------------------------------------->Steps to confirgure what should an authentication do<------------------------------------------------------------
+
+    1) GEt hold of authenticationManagerBuilder
+    *when your dealing with thr AuthenticationMangerBuilder it will ask what type of authrentication you want
+    *you will say i want memory authentication 
+    *then authenticationManagerBuilder wi;ll say OK
+    *what the useraname and password and the role for the in memory users are(you might multiplae users)
+    *then again a new authenticationManagerBuilder is created to get ut info
+    2) Set the configuration on it 
+    
+    
+ ----------------------------------------------------> How to Configure Spring Security AUthorizaton<----------------------------------------------------------------
+    
+    //configuring Spring security Authorization
+	@Override
+	protected void configure(HttpSecurity http) throws Exception {
+	
+   	 http.authorizeRequests()// its is to open up(start) the method chaining 
+	 
+	           .antMatchers("/").permitAll()//-->".antMatchers("/","static/css","static/js")" is alloww any kind of access by using ".pemitAll()"
+	           .antMatchers("/","static/css","static/js")//-->pecifying the path,----> "/**" this path specify all the path in the current lvl and any nested lv below this 
+	           .hasRole("ADMIN")    //-->to give authorizaton to someone you mention here 
+	           .and()//-->Ending the method chaining
+	           .formLogin(); //-->mentioning the type of login to let spring secucrity to do
+	           }
+	           
+----------------------------------------->
